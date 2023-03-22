@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Menubanco {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int escolha;
+        double saldo = 0.0;
+
+        do {
+            System.out.println("\n========== MENU DE OPERAÇÕES BANCÁRIAS ==========");
+            System.out.println("1 - Consultar saldo");
+            System.out.println("2 - Realizar depósito");
+            System.out.println("3 - Realizar saque");
+            System.out.println("4 - Sair do menu");
+            System.out.print("\nEscolha uma opção: ");
+            escolha = input.nextInt();
+
+            switch (escolha) {
+                case 1:
+                    System.out.printf("Seu saldo atual é R$ %.2f\n", saldo);
+                    break;
+                case 2:
+                    System.out.print("Digite o valor do depósito: R$ ");
+                    double valorDeposito = input.nextDouble();
+                    saldo += valorDeposito;
+                    System.out.printf("Depósito realizado com sucesso. Seu novo saldo é R$ %.2f\n", saldo);
+                    break;
+                case 3:
+                    System.out.print("Digite o valor do saque: R$ ");
+                    double valorSaque = input.nextDouble();
+                    if (valorSaque > saldo) {
+                        System.out.println("Saldo insuficiente.");
+                    } else {
+                        saldo -= valorSaque;
+                        System.out.printf("Saque realizado com sucesso. Seu novo saldo é R$ %.2f\n", saldo);
+                    }
+                    break;
+                case 4:
+                    System.out.println("Saindo do menu...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+
+        } while (escolha != 4);
+
+        input.close();
+    }
+}
